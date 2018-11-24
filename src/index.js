@@ -1,7 +1,19 @@
+const main = require('./main');
 const help = require('./help');
 
-const call = {
+const cmds = {
+  main,
   help
 };
 
-module.exports = (cmd = '', functionName = '', args = {}) => call[cmd](functionName, args);
+const call = new Proxy({}, {
+  get: (_, property) => {
+    const cmd = property.toLowerCase();
+    if (cmds[cmd]) {
+      return cmds[cmd];
+    }
+    return cmds[help];
+  }
+});
+
+module.exports = ([cmd = 'main', functionName = ''] = [], args = {}) => call[cmd](functionName, args);
