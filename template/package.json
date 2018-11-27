@@ -1,0 +1,7 @@
+{
+  "name": "v0-scf-function",
+  "version": "1.0.0",
+  "description": "腾讯云无服务器函数SCF命令行辅助工具",
+  "dependencies": {
+  }
+}

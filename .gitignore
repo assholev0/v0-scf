@@ -2,6 +2,7 @@ node_modules/
 demo/
 temp/
 .nyc_output/
+.scf_rc
 
 .DS_Store
 *.log

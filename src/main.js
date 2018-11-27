@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
 const login = require('./login');
+const deleter = require('./delete');
+const list = require('./list');
 const help = require('./help');
 
 const choices = [
@@ -30,6 +32,14 @@ module.exports = async (_, args) => {
   switch (choices.findIndex(x => x === cmd)) {
     case 0: {
       login('', args);
+      break;
+    }
+    case 3: {
+      deleter('', args);
+      break;
+    }
+    case 5: {
+      list('', args);
       break;
     }
     default: {

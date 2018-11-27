@@ -1,9 +1,13 @@
 const main = require('./main');
 const login = require('./login');
+const deleter = require('./delete');
+const list = require('./list');
 const help = require('./help');
 
 const cmds = {
   main,
+  delete: deleter,
+  list,
   help,
   login
 };
