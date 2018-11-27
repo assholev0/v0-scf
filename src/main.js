@@ -14,7 +14,8 @@ const choices = [
     disabled: '暂不支持'
   },
   new inquirer.Separator(),
-  'help 帮助'// 8
+  'help 帮助', // 8
+  new inquirer.Separator()
 ];
 
 module.exports = async (_, args) => {

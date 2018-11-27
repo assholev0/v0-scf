@@ -1,9 +1,11 @@
 const main = require('./main');
+const login = require('./login');
 const help = require('./help');
 
 const cmds = {
   main,
-  help
+  help,
+  login
 };
 
 const call = new Proxy({}, {
@@ -12,7 +14,7 @@ const call = new Proxy({}, {
     if (cmds[cmd]) {
       return cmds[cmd];
     }
-    return cmds[help];
+    return help;
   }
 });
 
