@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
+const { SCF } = require('wqcloud');
 const fs = require('fs');
 const { globalPath, localPath } = require('./config');
 
@@ -64,6 +65,14 @@ module.exports = async () => {
   const rcData = {
     SecretId, SecretKey, Region
   };
+  const sdk = SCF(rcData);
+  const { codeDesc = '' } = await sdk.ListFunctions();
+  if (codeDesc !== 'Success') {
+    // eslint-disable-next-line no-console
+    console.log(chalk`SecretId/SecretKey {red.bold 校验失败}，请检查后重新尝试。`);
+    return;
+  }
+
   fs.writeFileSync(Global ? globalPath : localPath, `${JSON.stringify(rcData, null, 2)}\n`, 'utf8');
   if (!Global) {
     const ignorePath = './.gitignore';
