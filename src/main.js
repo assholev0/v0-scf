@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const login = require('./login');
+const create = require('./create');
 const deleter = require('./delete');
 const list = require('./list');
 const help = require('./help');
@@ -20,7 +21,7 @@ const choices = [
   new inquirer.Separator()
 ];
 
-module.exports = async (_, args) => {
+module.exports = async () => {
   const { cmd = 'help' } = await inquirer.prompt([
     {
       type: 'list',
@@ -31,15 +32,19 @@ module.exports = async (_, args) => {
   ]);
   switch (choices.findIndex(x => x === cmd)) {
     case 0: {
-      login('', args);
+      login();
+      break;
+    }
+    case 2: {
+      create();
       break;
     }
     case 3: {
-      deleter('', args);
+      deleter('');
       break;
     }
     case 5: {
-      list('', args);
+      list();
       break;
     }
     default: {

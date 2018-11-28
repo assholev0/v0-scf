@@ -3,6 +3,6 @@ const list = require('cli-list');
 const minimist = require('minimist');
 const endpoint = require('../src');
 
-const [{ _: cmd = [], ...args }] = list(process.argv.slice(2)).map(item => minimist(item));
+const [{ _: cmd = [] }] = list(process.argv.slice(2)).map(item => minimist(item));
 
-endpoint(cmd, args);
+endpoint(cmd);

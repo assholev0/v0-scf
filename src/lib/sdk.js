@@ -1,4 +1,5 @@
 const fs = require('fs');
+const fse = require('fs-extra');
 const chalk = require('chalk');
 const { SCF } = require('wqcloud');
 const { globalPath, localPath } = require('../config');
@@ -9,6 +10,9 @@ module.exports = () => {
     console.log(chalk`请先执行 {red.bold csf loign} 进行登录`);
     process.exit(0);
   }
-  const config = fs.readFileSync(fs.existsSync(localPath) ? localPath : globalPath, 'utf8');
-  return SCF(JSON.parse(config));
+  const config = fse.readJSONSync(fs.existsSync(localPath) ? localPath : globalPath);
+  return SCF({
+    ...config,
+    Version: '2018-04-16'
+  });
 };

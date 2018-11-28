@@ -1,11 +1,13 @@
 const main = require('./main');
 const login = require('./login');
+const create = require('./create');
 const deleter = require('./delete');
 const list = require('./list');
 const help = require('./help');
 
 const cmds = {
   main,
+  create,
   delete: deleter,
   list,
   help,
@@ -22,4 +24,4 @@ const call = new Proxy({}, {
   }
 });
 
-module.exports = ([cmd = 'main', functionName = ''] = [], args = {}) => call[cmd](functionName, args);
+module.exports = ([cmd = 'main', functionName = ''] = []) => call[cmd](functionName);
