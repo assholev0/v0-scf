@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const { SCF } = require('wqcloud');
 const fs = require('fs');
 const { globalPath, localPath } = require('./config');
+const { handler } = require('./lib/common');
 
 const regions = [
   '广州-华南地区(ap-guangzhou)',
@@ -63,11 +64,11 @@ module.exports = async () => {
   const { SecretId, SecretKey, Global } = answers;
   const [, Region = 'ap-guangzhou'] = answers.Region.match(/\(([\S]+)\)/) || [];
   const rcData = {
-    SecretId, SecretKey, Region
+    SecretId, SecretKey, Region, Version: '2018-04-16'
   };
   const sdk = SCF(rcData);
-  const { codeDesc = '' } = await sdk.ListFunctions();
-  if (codeDesc !== 'Success') {
+  const result = await sdk.ListFunctions().then(handler('登录'));
+  if (!result) {
     // eslint-disable-next-line no-console
     console.log(chalk`SecretId/SecretKey {red.bold 校验失败}，请检查后重新尝试。`);
     return;

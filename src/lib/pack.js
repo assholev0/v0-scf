@@ -29,7 +29,7 @@ module.exports = (fn = 'template') => {
     deferred.reject(err);
   });
   archive.pipe(output);
-  archive.directory(fn === 'templage' ? path.join(__dirname, '../template/') : `./${fn}`, false);
+  archive.directory(fn === 'template' ? path.join(__dirname, '../../template/') : `./${fn}`, false);
   archive.finalize();
   output.on('close', () => {
     deferred.resolve(

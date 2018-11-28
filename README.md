@@ -32,6 +32,7 @@ scf [operation] [function_name]
 
 就不需要些过多介绍了，自己摸索吧。
 
+使用 ESLint 全局管理云函数示例项目： <https://github.com/assholev0/scf-init-demo>
 
 ## License
 
