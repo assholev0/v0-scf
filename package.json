@@ -1,6 +1,6 @@
 {
   "name": "v0-scf",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "腾讯云无服务器函数SCF命令行辅助工具",
   "repository": "git@github.com:assholev0/v0-scf.git",
   "author": "willin <willin@willin.org>",

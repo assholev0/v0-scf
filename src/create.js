@@ -1,9 +1,9 @@
 const inquirer = require('inquirer');
-const chalk = require('chalk');
 const fse = require('fs-extra');
 const path = require('path');
 const SDK = require('./lib/sdk');
 const pack = require('./lib/pack');
+const { handler } = require('./lib/common');
 const { input, envEditor } = require('./lib/prompt');
 
 module.exports = async (fn = '') => {
@@ -29,26 +29,15 @@ module.exports = async (fn = '') => {
   const zip = await pack();
 
   const sdk = SDK();
-  const {
-    Response: {
-      Error: {
-        Message = ''
-      } = {}
-    }
-  } = await sdk.CreateFunction({
+  const result = await sdk.CreateFunction({
     FunctionName,
     'Code.ZipFile': zip,
     Handler: 'index.main_handler',
     ...prompts,
     ...env,
     Runtime: 'Nodejs8.9'
-  });
-  if (Message === '') {
-    // eslint-disable-next-line no-console
-    console.log(chalk`{green.bold 创建成功!}`);
+  }).then(handler('创建'));
+  if (result) {
     fse.copySync(path.join(__dirname, '../template'), `./${FunctionName}`);
-  } else {
-    // eslint-disable-next-line no-console
-    console.log(chalk`{red.bold 创建失败:} ${Message}`);
   }
 };

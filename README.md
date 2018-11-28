@@ -24,10 +24,13 @@ yarn add v0-scf
 
 ## 使用
 
+<img width="551" alt="wx20181128-134110 2x" src="https://user-images.githubusercontent.com/1890238/49131474-4e657400-f313-11e8-8225-8211fcbe8f44.png">
+
 ```bash
 scf [operation] [function_name]
 ```
 
+就不需要些过多介绍了，自己摸索吧。
 
 
 ## License

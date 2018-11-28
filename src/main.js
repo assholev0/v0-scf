@@ -2,6 +2,7 @@ const inquirer = require('inquirer');
 const login = require('./login');
 const create = require('./create');
 const deleter = require('./delete');
+const update = require('./update');
 const list = require('./list');
 const help = require('./help');
 
@@ -26,6 +27,7 @@ module.exports = async () => {
     {
       type: 'list',
       name: 'cmd',
+      pageSize: 10,
       message: '你想要做些什么？',
       choices
     }
@@ -40,7 +42,11 @@ module.exports = async () => {
       break;
     }
     case 3: {
-      deleter('');
+      deleter();
+      break;
+    }
+    case 4: {
+      update();
       break;
     }
     case 5: {
